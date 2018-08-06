@@ -10,11 +10,14 @@
 
         <!--Logo-->
         <ImageView
+
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal" />
 
         <!--User-->
         <EditText
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email:"
@@ -22,6 +25,7 @@
 
         <!--Password-->
         <EditText
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password:"
@@ -30,15 +34,16 @@
 
         <!--Login-->
         <Button
+
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Login" />
 
         <!--Register-->
         <TextView
-            android:layout_gravity="center_horizontal"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
             android:text="New Register" />
 
 
