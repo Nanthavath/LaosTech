@@ -7,6 +7,12 @@
     android:orientation="vertical"
     tools:context=".MainActivity">
 
+<ImageView
+    android:scaleType="fitXY"
+    android:src="@drawable/wallpaper"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" />
+
 
     <!--Contentof Fragment-->
     <FrameLayout
