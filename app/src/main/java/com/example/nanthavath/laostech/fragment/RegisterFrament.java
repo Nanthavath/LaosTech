@@ -30,7 +30,6 @@ public class RegisterFrament extends Fragment {
     private ImageView imageView;
 
 
-
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
@@ -66,7 +65,7 @@ public class RegisterFrament extends Fragment {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == getActivity().RESULT_OK) {
-            uri=data.getData();
+            uri = data.getData();
             try {
 
                 Bitmap bitmap = BitmapFactory.decodeStream(getActivity().getContentResolver().openInputStream(uri));
@@ -92,7 +91,7 @@ public class RegisterFrament extends Fragment {
 
                 Intent intent = new Intent(Intent.ACTION_PICK);
                 intent.setType("image/*"); // Open app picture
-                startActivityForResult(Intent.createChooser(intent,"Please Choose App"),1);   // get picture
+                startActivityForResult(Intent.createChooser(intent, "Please Choose App"), 1);   // get picture
 
 
             }
