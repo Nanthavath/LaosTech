@@ -23,6 +23,11 @@ import android.widget.Toast;
 import com.example.nanthavath.laostech.MainActivity;
 import com.example.nanthavath.laostech.R;
 import com.example.nanthavath.laostech.utility.MyAlert;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.google.firebase.storage.UploadTask;
 
 public class RegisterFrament extends Fragment {
 
@@ -88,10 +93,32 @@ public class RegisterFrament extends Fragment {
 
         } else {
 //            No Space
+            ploadPhotoToFirebase();
 
         }
 
     }
+
+    private void ploadPhotoToFirebase() {
+        FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+        StorageReference storageReference=firebaseStorage.getReference();
+        StorageReference storageReference1 = storageReference.child("Avata/" + "avata");
+        storageReference1.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
+            @Override
+            public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
+                Toast.makeText(getActivity(),"Uplaod Success",Toast.LENGTH_SHORT).show();
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                Toast.makeText(getActivity(),"Uplaod Unsuccess",Toast.LENGTH_SHORT).show();
+
+            }
+        });
+
+
+
+    }   //uploadPhoto
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
