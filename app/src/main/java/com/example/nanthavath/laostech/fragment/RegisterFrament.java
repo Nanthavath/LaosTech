@@ -15,12 +15,14 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
 
 import com.example.nanthavath.laostech.MainActivity;
 import com.example.nanthavath.laostech.R;
+import com.example.nanthavath.laostech.utility.MyAlert;
 
 public class RegisterFrament extends Fragment {
 
@@ -28,6 +30,7 @@ public class RegisterFrament extends Fragment {
 
     private Uri uri;
     private ImageView imageView;
+    private boolean aBoolean = true;
 
 
     @Override
@@ -47,17 +50,47 @@ public class RegisterFrament extends Fragment {
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
 
-        inflater.inflate(R.menu.menu_register, menu);
+        inflater.inflate(R.menu.menu_register, menu); //get item menu
 
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         if (item.getItemId() == R.id.itemUpload) {
+            uploadProcess();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void uploadProcess() {
+
+        EditText nameEditText = getView().findViewById(R.id.edtName);
+        EditText emailEditText = getView().findViewById(R.id.edtEmail);
+        EditText passwordEditText = getView().findViewById(R.id.edtPassword);
+
+//        get Value From EditText
+        String nameString = nameEditText.getText().toString().trim();
+        String emailString = emailEditText.getText().toString().trim();
+        String passwordString = passwordEditText.getText().toString().trim();
+
+//        Check choose Photo
+        if (aBoolean) {
+//            None Choose Photo
+            MyAlert myAlert = new MyAlert(getActivity());
+            myAlert.normalDialog("None Choose Photo", "Please choose photo");
+
+        } else if (nameString.isEmpty() || emailString.isEmpty() || passwordString.isEmpty()) {
+//            Have Space
+            MyAlert myAlert = new MyAlert(getActivity());
+            myAlert.normalDialog("Have Space", "Please Fill all bank");
+
+        } else {
+//            No Space
+
+        }
+
     }
 
     @Override
@@ -66,6 +99,7 @@ public class RegisterFrament extends Fragment {
 
         if (resultCode == getActivity().RESULT_OK) {
             uri = data.getData();
+            aBoolean = false;
             try {
 
                 Bitmap bitmap = BitmapFactory.decodeStream(getActivity().getContentResolver().openInputStream(uri));
@@ -102,7 +136,7 @@ public class RegisterFrament extends Fragment {
         Toolbar toolbar = getView().findViewById(R.id.toolbarRegister);
         ((MainActivity) getActivity()).setSupportActionBar(toolbar);
         ((MainActivity) getActivity()).getSupportActionBar().setTitle("Register");
-        ((MainActivity) getActivity()).getSupportActionBar().setSubtitle("Please Choose Photo and Fill All Blank");
+        //((MainActivity) getActivity()).getSupportActionBar().setSubtitle("Please Choose Photo and Fill All Blank");
         ((MainActivity) getActivity()).getSupportActionBar().setHomeButtonEnabled(true);
         ((MainActivity) getActivity()).getSupportActionBar().setDisplayHomeAsUpEnabled(true);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

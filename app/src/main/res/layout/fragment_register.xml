@@ -34,18 +34,22 @@
                 android:src="@drawable/photo" />
             <!--Name-->
             <EditText
+                android:id="@+id/edtName"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/textfield_name"
                 android:hint="Name:" />
             <!--User-->
             <EditText
+                android:inputType="textEmailAddress"
+                android:id="@+id/edtEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/textfield_email"
                 android:hint="Email:" />
             <!--Password-->
             <EditText
+                android:id="@+id/edtPassword"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:background="@drawable/textfield_password"

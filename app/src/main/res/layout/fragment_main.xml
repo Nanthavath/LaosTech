@@ -3,53 +3,61 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_margin="@dimen/margin"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@drawable/bg_login"
-        android:orientation="vertical">
+        android:layout_height="match_parent">
 
-        <!--Logo-->
-
-
-        <!--User-->
-        <EditText
+        <LinearLayout
+            android:layout_margin="@dimen/margin"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@drawable/textfield_email"
-            android:hint="Email:"
-            android:inputType="textEmailAddress" />
+            android:background="@drawable/bg_login"
+            android:orientation="vertical">
 
-        <!--Password-->
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/textfield_password"
-            android:hint="Password:"
-            android:inputType="textPassword" />
+            <!--Logo-->
 
 
-        <!--Login-->
-        <Button
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/bg_button"
-            android:text="Login" />
+            <!--User-->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/textfield_email"
+                android:hint="Email:"
+                android:inputType="textEmailAddress" />
 
-        <!--Register-->
-        <TextView
-            android:id="@+id/txtRegister"
-            android:clickable="true"
-            android:layout_marginTop="10dp"
-            android:textStyle="bold"
-            android:textSize="@dimen/h2"
-            android:textColor="@color/colorAccent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:text="New Register" />
+            <!--Password-->
+            <EditText
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/textfield_password"
+                android:hint="Password:"
+                android:inputType="textPassword" />
 
 
-    </LinearLayout>
+            <!--Login-->
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_button"
+                android:text="Login" />
+
+            <!--Register-->
+            <TextView
+                android:id="@+id/txtRegister"
+                android:clickable="true"
+                android:layout_marginTop="10dp"
+                android:textStyle="bold"
+                android:textSize="@dimen/h2"
+                android:textColor="@color/colorAccent"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="New Register" />
+
+
+        </LinearLayout>
+
+    </ScrollView>
+
+
 </RelativeLayout>
