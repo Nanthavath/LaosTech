@@ -9,6 +9,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -23,8 +24,12 @@ import android.widget.Toast;
 import com.example.nanthavath.laostech.MainActivity;
 import com.example.nanthavath.laostech.R;
 import com.example.nanthavath.laostech.utility.MyAlert;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -36,6 +41,10 @@ public class RegisterFrament extends Fragment {
     private Uri uri;
     private ImageView imageView;
     private boolean aBoolean = true;
+    private String nameString;
+    private String emailString ;
+    private String passwordString,uidString,pathURLString,
+    myPostString;
 
 
     @Override
@@ -76,9 +85,9 @@ public class RegisterFrament extends Fragment {
         EditText passwordEditText = getView().findViewById(R.id.edtPassword);
 
 //        get Value From EditText
-        String nameString = nameEditText.getText().toString().trim();
-        String emailString = emailEditText.getText().toString().trim();
-        String passwordString = passwordEditText.getText().toString().trim();
+        nameString = nameEditText.getText().toString().trim();
+         emailString = emailEditText.getText().toString().trim();
+         passwordString = passwordEditText.getText().toString().trim();
 
 //        Check choose Photo
         if (aBoolean) {
@@ -93,20 +102,51 @@ public class RegisterFrament extends Fragment {
 
         } else {
 //            No Space
-            ploadPhotoToFirebase();
+            createAuthentication();
+            uploadPhotoToFirebase();
 
         }
 
     }
 
-    private void ploadPhotoToFirebase() {
+    private void createAuthentication() {
+
+
+        final FirebaseAuth firebaseAuth=FirebaseAuth.getInstance();
+        firebaseAuth.createUserWithEmailAndPassword(emailString,passwordString)
+                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
+                    @Override
+                    public void onComplete(@NonNull Task<AuthResult> task) {
+                        if (task.isSuccessful()) {
+
+                            uidString = firebaseAuth.getCurrentUser().getUid();
+                            Log.wtf("8AugV1", "uidString ==> " + uidString);  //Log.wtf for HUAWEI  Log.d for Other
+
+                        } else {
+                            MyAlert myAlert = new MyAlert(getActivity());
+                            myAlert.normalDialog("Cannot Register",
+                                    "Because==>" + task.getException().getMessage());
+
+                        }
+
+                    }
+                });
+
+
+
+
+    }
+
+    private void uploadPhotoToFirebase() {
         FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
         StorageReference storageReference=firebaseStorage.getReference();
-        StorageReference storageReference1 = storageReference.child("Avata/" + "avata");
+        StorageReference storageReference1 = storageReference.child("Avata/" + nameString);
         storageReference1.putFile(uri).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Toast.makeText(getActivity(),"Uplaod Success",Toast.LENGTH_SHORT).show();
+                findPathUrlPhoto();
+
             }
         }).addOnFailureListener(new OnFailureListener() {
             @Override
@@ -119,6 +159,11 @@ public class RegisterFrament extends Fragment {
 
 
     }   //uploadPhoto
+
+    private void findPathUrlPhoto() {
+
+
+    }
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
