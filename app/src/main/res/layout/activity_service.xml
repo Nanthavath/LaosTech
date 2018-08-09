@@ -8,35 +8,44 @@
 
     <!--Content of Toolbar and Fragment-->
     <LinearLayout
-        android:orientation="vertical"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:orientation="vertical"></LinearLayout>
 
-        <!--Toolbar-->
 
-        <android.support.v7.widget.Toolbar
-            android:id="@+id/toolbarService"
-            android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar"
-            android:background="@color/colorPrimary"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize">
+    <!--Toolbar-->
 
-        </android.support.v7.widget.Toolbar>
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbarService"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/colorPrimary"
+        android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
 
-        <!--Content Fragment-->
+    </android.support.v7.widget.Toolbar>
 
-        <FrameLayout
-            android:id="@+id/contentServiceFragment"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-    </LinearLayout>
+    <!--Content Fragment-->
+
+    <FrameLayout
+        android:id="@+id/contentServiceFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
 
     <!--Drawer Menu-->
     <LinearLayout
-        android:background="#ffffff"
-        android:orientation="vertical"
         android:layout_width="320dp"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:background="#ffffff"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Drawer Menu"
+            android:textSize="@dimen/h1"
+            android:textStyle="bold" />
 
     </LinearLayout>
 

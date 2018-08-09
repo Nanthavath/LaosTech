@@ -14,7 +14,7 @@ public class ServiceActivity extends AppCompatActivity {
 
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction()
-                    .add(R.id.contentMainFragment,new ServiceFragment()).commit();
+                    .add(R.id.contentServiceFragment,new ServiceFragment()).commit();
         }
 
 
