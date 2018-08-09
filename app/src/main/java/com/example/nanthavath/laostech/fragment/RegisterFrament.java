@@ -34,6 +34,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
 
+import java.util.ArrayList;
+
 public class RegisterFrament extends Fragment {
 
 //    Explicit
@@ -146,6 +148,7 @@ public class RegisterFrament extends Fragment {
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 Toast.makeText(getActivity(),"Uplaod Success",Toast.LENGTH_SHORT).show();
                 findPathUrlPhoto();
+                createPost();
 
             }
         }).addOnFailureListener(new OnFailureListener() {
@@ -160,10 +163,51 @@ public class RegisterFrament extends Fragment {
 
     }   //uploadPhoto
 
-    private void findPathUrlPhoto() {
-
+    private void createPost() {
+        ArrayList<String> stringsArrayList = new ArrayList<String>();
+        stringsArrayList.add("Hell");
+        myPostString=stringsArrayList.toString();
+        Log.wtf("9AugV2","myPost ==> " +
+                myPostString);
 
     }
+
+    private void findPathUrlPhoto() {
+        try {
+            FirebaseStorage firebaseStorage = FirebaseStorage.getInstance();
+            StorageReference storageReference = firebaseStorage.getReference();
+            final String[] urisStrings = new String[1];
+            storageReference.child("Avata").child(nameString).getDownloadUrl()
+                    .addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            urisStrings[0] = uri.toString();
+                            pathURLString = urisStrings[0];
+                            Log.wtf("9AugV1", "patchURL ===>" +
+                                    pathURLString);
+
+
+
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    Log.wtf("9AugV1", "e Error==>" +
+                            e.toString());
+
+                }
+            });
+
+
+
+        }catch (Exception e){
+            e.printStackTrace();
+        }
+
+
+
+
+    }//
 
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
