@@ -96,6 +96,7 @@ public class MainFragment extends Fragment {
 
     private void moveToService() {
         startActivity(new Intent(getActivity(), ServiceActivity.class));
+        getActivity().finish();
 
     }
 
