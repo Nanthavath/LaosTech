@@ -14,7 +14,7 @@
     android:layout_height="match_parent" />
 
 
-    <!--Contentof Fragment-->
+    <!--Content of Fragment-->
     <FrameLayout
         android:id="@+id/contentMainFragment"
         android:layout_width="match_parent"
