@@ -5,12 +5,10 @@
     android:background="#ffffff">
 
     <!--List friend-->
-    <ListView
+    <android.support.v7.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@id/linearButtom">
-
-    </ListView>
+        android:layout_above="@id/linearButtom"/>
 
 
     <!--Post-->

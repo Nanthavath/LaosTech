@@ -93,6 +93,7 @@ public class ServiceFragment extends Fragment {
                     myAlert.normalDialog("Post False", "please type on Post");
                 } else {
                     editCurrentPost(postString);
+                    editText.setText("");
                 }
             }
         });
@@ -118,7 +119,7 @@ public class ServiceFragment extends Fragment {
 
         ArrayList<String> stringArrayList = new ArrayList<>();
         for (int i=0;i<strings.length;i+=1) {
-            stringArrayList.add(strings[i]);
+            stringArrayList.add(strings[i].trim());
         }
         stringArrayList.add(postString);
 
